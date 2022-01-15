@@ -51,17 +51,23 @@
         private bool HorizontalWin(BoardValue player)
         {
             var count = 0;
-            for (int col = 0; col < Board.ColumnCount; col++)
+            for (int row = 0; row < Board.RowCount; row++)
             {
-                for (int row = 0; row < Board.RowCount; row++)
+                for (int col = 0; col < Board.ColumnCount; col++)
                 {
                     if (Board.Values[row, col] != BoardValue.None // no empty row 
-                        && Board.ColumnCount > col + 1 //next is not end of array
                         && Board.Values[row, col] == player //current is player value
-                        && Board.Values[row, col + 1] == player //next is also player value
                         )
-                        count++;
-                    if (count == 3) return true;
+                    {
+                        count = 1;
+                        var searchCol = col + 1;
+                        while (count < 4 && NextMatch(player, row, searchCol))
+                        {
+                            count++;
+                            searchCol++;
+                        }
+                        if (count >= 4) return true;
+                    }
                 }
             }
             return false;
@@ -75,12 +81,18 @@
                 for (int col = 0; col < Board.ColumnCount; col++)
                 {
                     if (Board.Values[row, col] != BoardValue.None // no empty row 
-                        && Board.RowCount > row + 1 //next is not end of row array
                         && Board.Values[row, col] == player //current is player value
-                        && Board.Values[row + 1, col] == player //next is also player value
                         )
-                        count++;
-                    if (count == 3) return true;
+                    {
+                        count = 1;
+                        var searchRow = row + 1;
+                        while (count < 4 && NextMatch(player, searchRow, col))
+                        {
+                            count++;
+                            searchRow++;
+                        }
+                        if (count >= 4) return true;
+                    }
                 }
             }
             return false;
@@ -93,23 +105,20 @@
             {
                 for (int col = 0; col < Board.ColumnCount; col++)
                 {
-                    if (Board.Values[row, col] != BoardValue.None // no empty row 
-                        && Board.RowCount > row + 1 //next is not end of row array
-                        && Board.ColumnCount > col + 1 //next is not end of col array
+                    if (Board.Values[row, col] != BoardValue.None // no empty row ray
                         && Board.Values[row, col] == player //current is player value
-                        && Board.Values[row + 1, col + 1] == player //next is also player value
                         )
                     {
                         count = 1;
-                        var searchRow = row + 2;
-                        var searchCol = col + 2;
-                        while(count < 3 && searchRow < Board.RowCount && searchCol < Board.ColumnCount && NextMatch(player, searchRow, searchCol))
+                        var searchRow = row + 1;
+                        var searchCol = col + 1;
+                        while(count < 4 && NextMatch(player, searchRow, searchCol))
                         {
                             count++;
                             searchRow++;
                             searchCol++;
                         }
-                        if (count >= 3) return true;
+                        if (count >= 4) return true;
 
                     }
                 }
@@ -119,7 +128,7 @@
 
         private bool NextMatch(BoardValue player, int row, int col)
         {
-            return Board.Values[row, col] == player;
+            return  row < Board.RowCount && col < Board.ColumnCount && Board.Values[row, col] == player;
         }
 
         private bool RightUp(BoardValue player)
@@ -129,14 +138,22 @@
             {
                 for (int col = 0; col < Board.ColumnCount; col++)
                 {
-                    if (Board.Values[row, col] != BoardValue.None // no empty row 
-                        && row - 1 > 0 //Row is valid in array
-                        && Board.ColumnCount > col + 1 //next is not end of col array
+                    if (Board.Values[row, col] != BoardValue.None // no empty row ray
                         && Board.Values[row, col] == player //current is player value
-                        && Board.Values[row - 1, col + 1] == player //next is also player value
                         )
-                        count++;
-                    if (count == 3) return true;
+                    {
+                        count = 1;
+                        var searchRow = row - 1;
+                        var searchCol = col + 1;
+                        while (count < 4 && NextMatch(player, searchRow, searchCol))
+                        {
+                            count++;
+                            searchRow--;
+                            searchCol++;
+                        }
+                        if (count >= 4) return true;
+
+                    }
                 }
             }
             return false;

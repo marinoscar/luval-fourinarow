@@ -33,12 +33,12 @@
         {
             LastPlayer = BoardValue.None;
             Values = new BoardValue[6, 7] {
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
-                { BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None,BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
+                { BoardValue.None,      BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None,        BoardValue.None },
             };
         }
 
